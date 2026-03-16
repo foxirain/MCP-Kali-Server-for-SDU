@@ -59,16 +59,7 @@ class CommandExecutor:
     def execute(self) -> Dict[str, Any]:
         """Execute the command and handle timeout gracefully"""
         logger.info(f"Executing command: {self.command}")
-        
-        try:
-            self.process = subprocess.Popen(
-                self.command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.PIPE,
-                text=True,
-                bufsize=1  # Line buffered
-            )
+
             
             # Start threads to read output continuously
             self.stdout_thread = threading.Thread(target=self._read_stdout)
